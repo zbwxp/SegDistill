@@ -19,6 +19,7 @@ from .psp_head import PSPHead
 from .sep_aspp_head import DepthwiseSeparableASPPHead
 from .sep_fcn_head import DepthwiseSeparableFCNHead
 from .uper_head import UPerHead
+from .nrd_no_aspp import nrd_no_aspp
 
 
 from .segformer_head import SegFormerHead
