@@ -20,6 +20,7 @@ from .sep_aspp_head import DepthwiseSeparableASPPHead
 from .sep_fcn_head import DepthwiseSeparableFCNHead
 from .uper_head import UPerHead
 from .nrd_no_aspp import nrd_no_aspp
+from .bilinear_pad_head_fast import BilinearPADHead_fast
 
 
 from .segformer_head import SegFormerHead
