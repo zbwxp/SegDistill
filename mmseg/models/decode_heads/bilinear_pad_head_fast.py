@@ -145,6 +145,7 @@ class BilinearPADHead_fast(ASPPHead):
         self.add_module("cat_norm", norm)
         nn.init.constant_(self.cat_norm.weight, 1)
         nn.init.constant_(self.cat_norm.bias, 0)
+        self.out = nn.Identity()
 
     def forward(self, inputs):
         """Forward function."""
@@ -166,7 +167,9 @@ class BilinearPADHead_fast(ASPPHead):
         output = self.classifier(output)
         output = self.interpolate_fast(output, c1_output, self.cat_norm)
 
-        return output
+        out = self.out(output)
+
+        return out
 
     def interpolate_fast(self, x, x_cat=None, norm=None):
         dy_ch = self.dyn_ch
