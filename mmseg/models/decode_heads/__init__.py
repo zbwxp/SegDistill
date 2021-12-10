@@ -21,7 +21,8 @@ from .sep_fcn_head import DepthwiseSeparableFCNHead
 from .uper_head import UPerHead
 from .nrd_no_aspp import nrd_no_aspp
 from .bilinear_pad_head_fast import BilinearPADHead_fast
-
+from .nrd_lots_conv import nrd_lots_conv
+from .nrd_no_conv import nrd_no_conv
 
 from .segformer_head import SegFormerHead
 
