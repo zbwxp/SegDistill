@@ -192,7 +192,7 @@ model = dict(
     cfg_s=cfg_s,
     cfg_t=cfg_t,
     distillation = [
-        {'student_layer':'decode_head.out',
+        {'student_layer':'decode_head.linear_pred',
         'teacher_layer':'decode_head.out',
         'loss_name':'CGDLoss',
         'loss_config':{},
