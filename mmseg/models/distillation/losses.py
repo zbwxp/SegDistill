@@ -34,11 +34,13 @@ class KLDLoss(nn.Module):
 
     def shuffle(self,x_student,x_teacher,n_iter):
         interval = self.shuffle_config['interval']
+        idx = self.shuffle_config['idx']
+        x_student = x_student[:,idx,:,:].contiguous()
+        x_teacher = x_teacher[:,idx,:,:].contiguous()
+
         B,C,W,H = x_student.shape
         if n_iter % interval == 0:
-            idx = torch.randperm(C)
-            x_student = x_student[:,idx,:,:].contiguous()
-            x_teacher = x_teacher[:,idx,:,:].contiguous()
+            self.shuffle_config['idx'] = torch.randperm(C)
         return x_student,x_teacher
 
     def transform(self,x):
@@ -100,8 +102,8 @@ class KLDLoss(nn.Module):
 
         if self.resize_config:
             x_student,x_teacher = self.resize(x_student,gt),self.resize(x_teacher,gt)
-        # if self.shuffle_config:
-        #     x_student,x_teacher = self.shuffle(x_student,x_teacher,n_iter)
+        if self.shuffle_config:
+            x_student,x_teacher = self.shuffle(x_student,x_teacher,n_iter)
         if self.transform_config:
             x_student,x_teacher = self.transform(x_student),self.transform(x_teacher)
 
@@ -150,7 +152,7 @@ class CGDLoss(KLDLoss):
         self.tau = tau
 
         self.resize_config = {'mode':'bilinear','align_corners':False}
-        self.shuffle_config = {'interval':1000}
+        self.shuffle_config = {'interval': 1000, 'idx': torch.randperm(150)}
         self.transform_config = {'loss_type':'channel','group_size':group_size}
         self.warmup_config = None
         self.earlydecay_config = None
