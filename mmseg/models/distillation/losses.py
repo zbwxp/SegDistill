@@ -102,8 +102,8 @@ class KLDLoss(nn.Module):
 
         if self.resize_config:
             x_student,x_teacher = self.resize(x_student,gt),self.resize(x_teacher,gt)
-        if self.shuffle_config:
-            x_student,x_teacher = self.shuffle(x_student,x_teacher,n_iter)
+        # if self.shuffle_config:
+        #     x_student,x_teacher = self.shuffle(x_student,x_teacher,n_iter)
         if self.transform_config:
             x_student,x_teacher = self.transform(x_student),self.transform(x_teacher)
 
