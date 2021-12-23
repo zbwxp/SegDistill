@@ -23,6 +23,7 @@ from .nrd_no_aspp import nrd_no_aspp
 from .bilinear_pad_head_fast import BilinearPADHead_fast
 from .nrd_lots_conv import nrd_lots_conv
 from .nrd_no_conv import nrd_no_conv
+from .nrd_trans_stage5 import nrd_trans_stage5
 
 from .segformer_head import SegFormerHead
 
